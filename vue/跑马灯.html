@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <script src="lib/jquery-1.7.2.js"></script>
+
+</head>
+<body>
+<div class="app" id="app">
+    <input type="button" value="come on" @click="come">
+    <input type="button" value="stop" @click="stop">
+    <h4>{{msg}}</h4>
+</div>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'hello how are you ',
+            timer:null
+        },
+        methods:{
+            come:function(){
+                clearInterval(this.timer);
+                var that = this;
+                this.timer = setInterval(function () {
+                    var start = that.msg.substring(0,1)
+                    var end = that.msg.substring(1)
+                    that.msg = end+start
+                },200)
+
+            },
+            stop:function () {
+                clearInterval(this.timer);
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

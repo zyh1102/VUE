@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">添加品牌</h3>
+            </div>
+
+
+            <div class="panel-body form-inline">
+
+                <label>
+                    ID:
+                    <input type="text" class="form-control" v-model='id'>
+                </label>
+                <label>
+                    Name:
+                    <input type="text" class="form-control" v-model='name'>
+                </label>
+                <input type="button" value="add" class="btn btn-primary" @click='add'>
+                <label>
+                    搜索名称关键字：
+                    <input type="text" class="form-control" v-model="keywords">
+                </label>
+            </div>
+
+
+
+        </div>
+
+
+        <table class="table table-bordered table-hover table-stripted">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Time</th>
+                    <th>Operation</th>
+            </thead>
+            <tbody>
+            <!--自定义一个search方法，把所有的关键字通过传参的形式 传递给search方法-->
+            <!--在search方法内部，执行for循环，把所有符合搜索关键字的数据保存到一个数组，并返回-->
+                <tr v-for="item in search(keywords)" :key="item.id">
+                    <td>{{item.id}}</td>
+                    <td v-text='item.name'></td>
+                    <td>{{item.time | dateFormat('yyyy-mm-dd')}}</td>
+                    <td>
+                        <a href="##" @click.prevent='del(item.id)'>删除</a>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        
+        Vue.filter('dateFormat',function (dataStr,pattern) {
+            //根据给定的时间字符串，得到特定的时间
+            var dt = new Date(dataStr);
+            var y = dt.getFullYear();
+            var m = dt.getMonth()+1;//month是从0开始的
+            var d = dt.getDate();//getDate得到的是日期，getDay得到的是星期几
+            //return y+'-'+m+'-'+d;
+
+            if(pattern == 'yyyy-mm-dd'){
+                return `${y}-${m}-${d}`;//模板字符串
+            }/*else{
+                var hh = dt.getHours();
+                var mm = dt.getMinutes();
+                var ss = dt.getSeconds();
+                return `${y}-${m}-${d}  ${hh}:${mm}:${ss}`;
+            }*/
+        });
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: '',
+                name: '',
+                keywords:'',
+                list: [
+                    { id: 1, name: '奔奔', time: new Date() },
+                    { id: 2, name: '宝宝', time: new Date() }
+                ]
+            },
+            methods: {
+                add() {
+                    //1. 获取id 和name
+                    //2. 组指出一个对象
+                    //3. 把这个对象添加到list数组中
+                    var rec = {
+                        id: this.id,
+                        name: this.name,
+                        time: new Date(),
+                    }
+                    this.list.push(rec);
+                    //清空input
+                    this.id = '';
+                    this.name = '';
+                },
+                del(ID) {
+                    //1. 根据id找到要删除的对应的数据
+                    //2. 找到后使用splice
+                    this.list.some((item, i) => {
+                        if (item.id == ID) {
+                            this.list.splice(i, 1)
+                            //一旦找到就会返回true 就会终止some后续循环
+                            return true;
+                        }
+                    })
+                    //fineIndex专门用于查找index
+                },
+                search(keywords){
+                    //根据关键字进行数据的搜索
+
+                   /* var newList = [];
+                    this.list.forEach(item =>{
+                        if(item.name.indexOf(keywords) != -1){
+                            newList.push(item);
+                        }
+                    })
+                    return newList;*/
+
+                   //注意：forEach（无法被终止） some（返回true时终止） filter（过滤器，把符合条件的放到一个新数组） findIndex（找到对象的索引） 这些都属于数组的新方法
+                    return this.list.filter(item =>{
+                        //if(item.name.indexof(keywords) != -1){}
+
+                        //ES6新方法：prototype.includesz(字符串)，如果包含则返回true，不包含就返回false
+                        //jquery中的 $('：contains(字符串)')
+                        if(item.name.includes(keywords)){
+                            return item;
+                        }
+                    })
+                }
+            }
+        })
+
+
+
+    </script>
+</body>
+
+</html>

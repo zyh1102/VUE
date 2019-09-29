@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+
+    </style>
+    <script src="vue.js"></script>
+    <script>
+
+    </script>
+</head>
+<body>
+    <div id="box">
+        {{a}}
+    </div>
+    <script>
+       var vm =  new Vue({
+            el:'#box',
+            data:{
+                a:1
+            }
+        });
+
+      // var vm1 = new Vue({})
+
+        console.log(vm.$data.a);
+    </script>
+</body>
+</html>
+
+
+<script>
+    function person(name,age){
+        this.name = name;
+        this.age = age;
+    }
+
+     new person('小明',18)
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

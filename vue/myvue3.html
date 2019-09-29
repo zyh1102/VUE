@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Title</title>
+    <style>
+        .box{width:100px;height:100px;border:1px solid red;color:white;}
+        .blue{color:blue;}
+        .orange{background:orange;}
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+
+
+  <div class="box" id="box"  >
+        <strong :style="[c,g]">文字显示</strong>
+  </div>
+
+</body>
+</html>
+<script>
+    var v1 = new Vue({
+        el:'#box',
+        data:{
+             c:{color:'red'},
+             g:{background:'green'}
+        },
+        methods:{
+
+        }
+    })
+
+
+</script>

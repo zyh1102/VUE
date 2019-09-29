@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+<script src="vue.js"></script>
+<script>
+    window.onload = function(){
+        var vm =  new Vue({
+            el:"#box",
+            data:{
+                msg:"hello world!",
+                json:{'a':'aaa','b':'bbb','c':'ccc'}
+            }
+        })
+    }
+
+</script>
+</head>
+<body>
+
+
+<div id="box">
+
+    {{msg}}
+    <input type="text" v-model="msg">
+    <ul>
+        <li v-for="val in json">
+            {{val}}---{{$index}}
+        </li>
+    </ul>
+</div>
+</body>
+
+
+</html>

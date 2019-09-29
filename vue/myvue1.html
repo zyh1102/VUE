@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Title</title>
+    <style>
+        .box{width:100px;height:100px;background: blue;color:white;}
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+
+
+  <div class="box" id="box" @click="show('小明')">
+        {{msg}}
+  </div>
+
+</body>
+</html>
+<script>
+    var v1 = new Vue({
+        el:'#box',
+        data:{
+            msg:'我们开始学习前端中的Vue!'
+        },
+        methods:{
+            show:function(name){
+                alert(name + "!,"+this.msg);
+            }
+        }
+    })
+
+
+</script>

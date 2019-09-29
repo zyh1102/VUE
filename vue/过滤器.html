@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="lib/bootstrap.min.css">
+</head>
+<body>
+    <div id="app">
+        <p>{{msg | dataV('01','02')}}</p>
+    </div>
+
+</body>
+</html>
+<script src="vue.js"></script>
+<script>
+    // Vue.filter('dataV',function (msg,va1) {
+    //     return msg+va1;
+    // })
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'曾今的我也是一个单纯的少年，单纯的我，傻傻的问，谁是这个世界上最单纯的男人'
+        },
+        methods:{},
+        filters:{
+            dataV:function (msg,a1,a2) {
+                return msg+'2313'+a1+a2;
+            }
+        }
+    });
+</script>
+
+<!--
+过滤器：
+过滤器可以用在两个地方： 插值表达式（mustache）和v-bind表达式
+
+过滤器使用时候的格式：
+{{name|nameope}} &ndash;&gt;
+(先调用nameope 过滤name)
+*/
+//过滤器的定义：
+/* Vue.filter('过滤器的名称',function (msg,arg1,arg2) {//过滤时要做的处理
+return msg.replace(/单纯/g,arg1,arg2)
+}) */
+//过滤器的使用： <p>{{msg|'过滤器的名称'（新内容1,新内容2）}}</p>
+//function的第一个参数 永远都是过滤器 管道符前面 传递过来的数据
+//第二个参数用于传参
+
+/* Vue.filter('name',function (data) {
+return data+'123';
+})-->

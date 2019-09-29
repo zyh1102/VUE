@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/jquery-1.7.2.js"></script>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="a">
+        <select v-model="opt">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" v-model="b">
+        <input type="button" value="=" @click="calc">
+        <input type="text" v-model="c">
+    </div>
+
+
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                a:0,
+                b:0,
+                c:0,
+                opt:'-'
+            },
+            methods:{
+                calc:function () {
+                   /* switch (this.opt) {
+                        case '+':
+                            this.c = parseInt(this.a)+parseInt(this.b);
+                            break;
+
+                        case '-':
+                            this.c = parseInt(this.a)-parseInt(this.b);
+                            break;
+
+                        case '*':
+                            this.c = parseInt(this.a)*parseInt(this.b);
+                            break;
+
+                        case '/':
+                            this.c = parseInt(this.a)/parseInt(this.b);
+                            break;
+
+                    }*/
+
+
+                   var codeStr = 'parseInt(this.a)'+this.opt+'parseInt(this.b)';
+                   this.c = eval(codeStr);//eval解析字符串并执行
+                }
+            }
+        })
+    </script>
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Title</title>
+    <style>
+
+        .blue{color:blue;}
+        .orange{background:orange;}
+        .msg{width:300px;height:200px;border:1px solid green;}
+    </style>
+    <script src="vue.js"></script>
+    <script>
+        window.onload = function(){
+
+            var v1 = new Vue({
+                el:'#box',
+                data:{
+                    a:true
+                },
+                methods:{
+
+                }
+            })
+        }
+</script>
+</head>
+<body>
+  <div class="box" id="box"  >
+      <input type="button" value="按钮" @click="a=!a">
+
+        <div class="msg" id="msg" v-show="a">
+            <strong >文字显示</strong>
+        </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        .box{width:400px;height:300px;border:1px solid red;}
+    </style>
+    <script src="vue.js"></script>
+    <script>
+        window.onload = function(){
+            var c1 = new Vue({
+                el:'#box',
+                data:{
+                    msg:'你今天学习前端开发了吗？'
+                },
+                methods:{
+                    show:function(ev){
+                        console.log("(" + ev.clientX + ":" +ev.clientY+")");
+                    }
+                }
+            })
+        }
+
+        /*******************
+         *
+         *
+         * 1.加载vuejs
+         * 2.定义一个实例 new vue()
+         * 3.写一个json
+
+              {
+                  el     :  '选择器',
+                  data   :  {}
+                 methods: {}
+
+              }
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         * ***********************/
+
+    </script>
+</head>
+<body>
+    <div  class="box"  id="box" @click="show($event)" style="border:1px solid red;">
+          {{msg}}
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
